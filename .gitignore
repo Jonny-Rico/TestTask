@@ -1,0 +1,35 @@
+## Project Files
+/*/packages/
+.idea/
+	
+## Other File Types
+*.bim
+*.dat
+*.pdb
+*.pref
+*.dll
+*.data
+*.cd
+*.iml
+*.jpg
+*.jpeg
+*.exe
+*.tmp
+
+## Ignore Test Results
+TestResult.xml
+
+## Ignore generated files
+obj/*
+Debug/*.dll
+Debug/*
+tags.txt
+
+## Visual Studio generated files
+TestProject1/.vs
+
+## All debug folders
+TestProject1/bin/Debug
+TestProject1/bin/obj
+TestProject1/obj/Debug
+TestProject1/obj/
