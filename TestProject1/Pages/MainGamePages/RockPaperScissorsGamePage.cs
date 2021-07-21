@@ -13,7 +13,7 @@ namespace TestProject1.Pages.MainGamePages
     {
         public Button RockPaperScissorsTabNavButton => new Button("Rock Paper Scissors tab", By.XPath("//button[contains(@class,'tabs-bar-item') and .//span[text()='Rock Paper Scissors']]"));
         public Button CloseTutorialButtonNavButton => new Button("Close tutorial", CloseTutorialButtonBy);
-        private readonly By CloseTutorialButtonBy = By.XPath("//button[.='Close tutorial']");
+        public readonly By CloseTutorialButtonBy = By.XPath("//button[.='Close tutorial']");
         private bool CloseTutorial;
 
         public RockPaperScissorsGamePage(bool closeTutorial = true) : base("Rock Paper Scissors")
