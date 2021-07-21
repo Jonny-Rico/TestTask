@@ -26,7 +26,7 @@ Debug/*
 tags.txt
 
 ## Visual Studio generated files
-TestProject1/.vs
+.vs
 
 ## All debug folders
 TestProject1/bin/Debug
