@@ -1,8 +1,10 @@
 ﻿using OpenQA.Selenium;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TestProject1.Helpers;
 using TestProject1.Helpers.Controls;
+using TestProject1.Pages.MainGamePages;
 using static TestProject1.Helpers.BrowserHelper;
 using static TestProject1.Helpers.WaitHelper;
 
@@ -25,7 +27,7 @@ namespace TestProject1.Pages.Components
 
         private static TextBox AmountTextBox = new TextBox("Amount", By.Id("amount-input"));
         private static Button BetButton = new Button("Bet", By.ClassName("place-bet-button"));
-        private static Button ClearAmountButton = new Button("Bet", By.ClassName("bet-slip-amount-button clear"));
+        private static Button ClearAmountButton = new Button("Bet", By.XPath("//button[.='C']"));
         private static Button AddRandomButton = new Button("Add random", By.XPath("//button[text()='Add random']"));
         private static Image BetAcceptedImage = new Image("Bet accepted", By.XPath("//span[@class='notification-message'][.='Bet accepted.']"));
         private static Link BetHistoryLink = new Link("Bet history", By.ClassName("recent-bets-link"));
@@ -95,8 +97,31 @@ namespace TestProject1.Pages.Components
         /// </summary>
         public static void PlaceBet()
         {
-            BetButton.Click();
-            BetAcceptedImage.WaitForVisible();
+            switch (NavigationBar.GetActiveGame())
+            {
+                case Game.Speedy7:
+                    {
+                        var gamePage = new Speedy7GamePage();
+                        var randomBet = RandomHelper.RandomEnumValue<Speedy7Bets>();
+                        gamePage.PlaceBet(randomBet);
+                    }
+
+                    break;
+                case Game.RockPaperScissors:
+                    {
+                        var gamePage = new RockPaperScissorsGamePage();
+                        var randomBet = RandomHelper.RandomEnumValue<RockPaperScissorsBets>();
+                        gamePage.PlaceBet(randomBet);
+                    }
+
+                    break;
+                default:
+                    {
+                        BetButton.Click();
+                        BetAcceptedImage.WaitForVisible();
+                        break;
+                    }
+            }
         }
 
         /// <summary>

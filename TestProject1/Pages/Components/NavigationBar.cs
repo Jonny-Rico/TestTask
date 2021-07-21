@@ -89,7 +89,7 @@ namespace TestProject1.Pages.Components
         /// Get type of current active game
         /// </summary>
         /// <returns>Type of game</returns>
-        private static Game GetActiveGame()
+        public static Game GetActiveGame()
         {
             var activeGame = Game.Undefined;
 

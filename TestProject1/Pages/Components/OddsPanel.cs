@@ -20,7 +20,7 @@ namespace TestProject1.Pages.Components
         public static Button ConfirmBallsButton = new Button("Confirm ball numbers", By.ClassName("odd-item-dropdown-confirm"));
 
         /// <summary>
-        /// Add specific odd to Bet Slip according specified game 
+        /// Add specific odd to Bet Slip according specified game exclude 'Speedy 7' and 'Rock Paper Scissors';
         /// </summary>
         /// <param name="oddTitle">Odd text value</param>
         /// <param name="game">Specified game from game list</param>
@@ -30,11 +30,9 @@ namespace TestProject1.Pages.Components
             switch (game)
             {
                 case Game.Speedy7:
-                    new Speedy7GamePage().AddOddToBetSlip(oddTitle);
-                    break;
+                    throw new NotImplementedException("There is no any Odds for 'Speedy 7' game. Bet need to be placed instead");
                 case Game.RockPaperScissors:
-                    new RockPaperScissorsGamePage().AddOddToBetSlip(oddTitle);
-                    break;
+                    throw new NotImplementedException("There is no any Odds for 'Rock Paper Scissors' game. Bet need to be placed instead");
                 case Game.AndarBahar:
                     new AndarBaharGamePage().AddOddToBetSlip(oddTitle);
                     break;
@@ -78,7 +76,15 @@ namespace TestProject1.Pages.Components
         /// <returns>List of odds titles</returns>
         public static List<string> GetOddTitlesList()
         {
-            return FindElements(OddTitleBy).Select(x => x.Text).ToList(); ;
+            switch (NavigationBar.GetActiveGame())
+            {
+                case Game.Speedy7:
+                    throw new NotImplementedException("There is no any Odds for 'Speedy 7' game. Bet need to be placed instead");
+                case Game.RockPaperScissors:
+                    throw new NotImplementedException("There is no any Odds for 'Rock Paper Scissors' game. Bet need to be placed instead");
+                default:
+                    return FindElements(OddTitleBy).Select(x => x.Text).ToList();
+            }
         }
 
         /// <summary>

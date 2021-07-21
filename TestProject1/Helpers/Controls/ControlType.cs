@@ -8,6 +8,7 @@
         Button,
         Image,
         TextBox,
-        Link
+        Link,
+        Label
     }
 }
